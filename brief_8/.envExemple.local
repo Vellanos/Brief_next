@@ -1,0 +1,6 @@
+# Spotify
+SPOTIFY_CLIENT_ID=xxxxxxxxxxxxxxxxxxxxxxxxxxx
+SPOTIFY_CLIENT_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxx
+SPOTIFY_REDIRECT_URI=http://localhost:3000/
+
+# Ajouter le client ID et le client secret et renomer ce fichier en .env.local

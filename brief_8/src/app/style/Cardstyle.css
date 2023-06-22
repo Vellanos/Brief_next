@@ -1,0 +1,15 @@
+.Cstyle {
+    background-color: #181818 !important;
+    transition: background-color 200ms;
+    min-height: 250px;
+}
+
+.Cstyle:hover {
+    background-color: #292929 !important;
+    cursor: pointer;
+}
+
+.image {
+    height: 6rem;
+    width: 6rem;
+}

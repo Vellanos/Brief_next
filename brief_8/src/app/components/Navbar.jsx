@@ -33,13 +33,16 @@ const NavBar = () => {
                     icon="pi pi-search"
                     className="mr-2 p-button-rounded p-button-secondary"
                 />
-                <Button
-                    icon="pi pi-user"
-                    className="mr-2 p-button-rounded p-button-secondary"
-                />
+                <a
+                    href="https://accounts.spotify.com/authorize?client_id=3dcd8b4d486448c68b286e8b44798d6e&response_type=code&redirect_uri=http://localhost:3000/&scope=user-read-currently-playing+user-top-read"
+                    className="mr-2 p-button p-button-rounded p-button-secondary"
+                >
+                    <i className="pi pi-user" />
+                </a>
             </div>
         );
     };
+
 
     const renderNavbar = () => {
         return (
