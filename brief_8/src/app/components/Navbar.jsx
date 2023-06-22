@@ -3,6 +3,7 @@ import React from 'react';
 import { Menubar } from 'primereact/menubar';
 import { Button } from 'primereact/button';
 import { classNames } from 'primereact/utils';
+import { SignIn, signIn, signOut } from "next-auth/react"
 
 const NavBar = () => {
     const [isMobile, setIsMobile] = React.useState(false);
@@ -33,12 +34,12 @@ const NavBar = () => {
                     icon="pi pi-search"
                     className="mr-2 p-button-rounded p-button-secondary"
                 />
-                <a
-                    href="https://accounts.spotify.com/authorize?client_id=3dcd8b4d486448c68b286e8b44798d6e&response_type=code&redirect_uri=http://localhost:3000/&scope=user-read-currently-playing+user-top-read"
-                    className="mr-2 p-button p-button-rounded p-button-secondary"
-                >
-                    <i className="pi pi-user" />
-                </a>
+                <Button
+                    onClick={() => signIn("spotify")}
+                    label="Login"
+                    icon="pi pi-user"
+                    className="mr-2 p-button-rounded p-button-secondary"
+                />
             </div>
         );
     };
@@ -56,7 +57,7 @@ const NavBar = () => {
         );
     };
 
-    return <div className='mb-1'>{renderNavbar()}</div>;
+    return <div className='mb-1 ml-1 mr-1'>{renderNavbar()}</div>;
 };
 
 export default NavBar;

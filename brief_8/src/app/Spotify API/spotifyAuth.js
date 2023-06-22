@@ -6,8 +6,8 @@ const getToken = async () => {
         const response = await axios.post(URL,
             new URLSearchParams({
                 'grant_type': 'client_credentials',
-                'client_id': '16906c62c84a46989fef0337f9e0075e',
-                'client_secret': '86341df5b5434efba6d8f8bb37a969e4'
+                'client_id': process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID,
+                'client_secret': process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET
             }),
             {
                 headers:

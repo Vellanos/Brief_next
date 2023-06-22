@@ -1,6 +1,7 @@
 'use client'
 import React from 'react';
-import CardContainer from './components/CardHorizontalContainer'
+import UserRecentlyPlayed from './components/UserRecentlyPlayed';
+import TopArtists from './components/TopArtists';
 
 import "primeflex/primeflex.css"
 import "primeicons/primeicons.css"
@@ -15,12 +16,11 @@ import "primereact/resources/primereact.min.css";
 function App() {
   return (
     <>
-      <div className='card-container h-auto pb-5 pl-3 pr-3 pt-2'>
-
-        <CardContainer titre="Podcasts" />
-        <CardContainer titre="Recommandés" />
-        <CardContainer titre="Les classements" />
+      <div className='flex flex-column gap-2'>
+        <UserRecentlyPlayed titre_container="Les dernières écoutes" />
+        <TopArtists titre_container="test" />
       </div>
+
     </>
   );
 }
