@@ -33,7 +33,7 @@ export const HomeContextProvider = ({ children }) => {
         );
     }
     return (
-        <HomeContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+        <HomeContext.Provider value={{ isLoggedIn, setIsLoggedIn, isLoading, setIsLoading }}>
             {children}
         </HomeContext.Provider>
     );

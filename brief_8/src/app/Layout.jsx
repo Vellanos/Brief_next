@@ -6,7 +6,6 @@ import { HomeContextProvider } from './components/HomeContext';
 
 export default function Layout({ children }) {
     return (
-
         <HomeContextProvider>
             <Navbar />
             {children}

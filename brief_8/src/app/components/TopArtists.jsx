@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { ProgressSpinner } from 'primereact/progressspinner';
-import "../style/CardContainer.css"
 import ContainerCard from './ContainerCard';
 
 export default function TopArtists() {
@@ -27,12 +26,17 @@ export default function TopArtists() {
         );
     }
     const TopArtists = artists.data.items
+    const subtitle = "popularity"
 
     return (
-        <ContainerCard
-            titre_container="Tes tops artists"
-            data={TopArtists}
-        />
+        <div>
+            <ContainerCard
+                titre_container="Vos artistes préférés"
+                subtitlecard={subtitle}
+                add="/100"
+                data={TopArtists}
+            />
+        </div>
     );
 
 }

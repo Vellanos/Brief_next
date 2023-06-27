@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { ProgressSpinner } from 'primereact/progressspinner';
-import "../style/CardContainer.css"
 import CardElement from './CardElement';
 
 export default function UserRecentlyPlayed({ titre_container }) {
@@ -47,7 +46,6 @@ export default function UserRecentlyPlayed({ titre_container }) {
             <div className="flex align-item-center justify-content-center">
                 {recentlyPlayedTracks?.slice(0, 6).map((album) =>
                     <CardElement
-                        key={album.id}
                         title={album.name}
                         subTitle={album.album.artist}
                         img={album.album.image}
