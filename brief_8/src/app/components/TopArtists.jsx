@@ -1,16 +1,17 @@
 import { useState, useEffect } from 'react';
-import { Card } from 'primereact/card';
+import { ProgressSpinner } from 'primereact/progressspinner';
 import "../style/CardContainer.css"
+import ContainerCard from './ContainerCard';
 
-export default function TopArtists({ titre_container }) {
-    const [tracks, setTracks] = useState([]);
+export default function TopArtists() {
+    const [artists, setArtists] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         fetch('/api/top-artists')
-            .then(response => response.json()) // Convert the response to JSON here
+            .then(response => response.json())
             .then(data => {
-                setTracks(data);
+                setArtists(data);
                 setLoading(false);
             })
             .catch(error => {
@@ -19,42 +20,20 @@ export default function TopArtists({ titre_container }) {
     }, []);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return (
+            <div className='flex align-items-center justify-content-center min-h-screen bg-black-alpha-90'>
+                <ProgressSpinner className='' animationDuration="1s" />
+            </div>
+        );
     }
-    console.log(tracks);
-    // const recentlyPlayedTracks = tracks.data.items.map(item => ({
-    //     name: item?.track?.name,
-    //     id: item?.track?.id,
-    //     album: {
-    //         name: item?.track?.album?.name,
-    //         id: item?.track?.album?.id,
-    //         image: item?.track?.album?.images[0]?.url,
-    //         artist: item?.track?.artists[0]?.name,
-    //     },
-    // }))
-
-    const header = (img) => (
-        <img alt="Card" src={img} />
-    );
+    const TopArtists = artists.data.items
 
     return (
-        <div className='card-container pb-5 pl-3 pr-3 pt-2 ml-1 mr-1'>
-            {/* <div className='flex flex-row justify-content-between mt-3 mb-3'>
-                <h2> {titre_container} </h2>
-                <a href="">Tout afficher</a>
-            </div>
-            <div className="flex">
-                {recentlyPlayedTracks.slice(0, 6).map((album) =>
-                    <Card
-                        key={album.id}
-                        title={album.name}
-                        subTitle={album.album.artist}
-                        header={header(album.album.image)}
-                        className="md:w-25rem m-3 bg-black-alpha-30 hover:bg-black-alpha-10 text-white text-sm customTitle p-3 cursor-pointer">
-                    </Card>
-                )}
-            </div> */}
-        </div>
+        <ContainerCard
+            titre_container="Tes tops artists"
+            data={TopArtists}
+        />
     );
 
 }
+

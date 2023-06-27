@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import getToken from '../Spotify API/spotifyAuth';
 
-const fetchData = (url, maxRetries = 2) => {
+const FetchData = (url, maxRetries = 2) => {
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -12,7 +12,7 @@ const fetchData = (url, maxRetries = 2) => {
         const now = new Date().getTime();
         const storedTokenTimestamp = localStorage.getItem('spotifyAuthTokenTimestamp');
 
-        if (storedTokenTimestamp && now - storedTokenTimestamp < 3600000) { // 3600000ms == 1hr
+        if (storedTokenTimestamp && now - storedTokenTimestamp < 3600000) {
             return localStorage.getItem('spotifyAuthToken');
         }
 
@@ -26,7 +26,7 @@ const fetchData = (url, maxRetries = 2) => {
         return fetchedToken;
     };
 
-    const getData = async (token) => {
+    const getData = useCallback(async (token) => {
         const response = await axios.get(url, {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -40,7 +40,7 @@ const fetchData = (url, maxRetries = 2) => {
         } else {
             throw new Error(`HTTP response status not OK: ${response.status}`);
         }
-    };
+    }, [url]);
 
     const tryAgain = useCallback(async () => {
         if (retries >= maxRetries) {
@@ -57,15 +57,15 @@ const fetchData = (url, maxRetries = 2) => {
             setError(err);
             setRetries(retries => retries + 1);
         }
-    }, [retries, maxRetries, url]);
+    }, [retries, maxRetries, getData]);
 
     useEffect(() => {
         setTimeout(() => {
             tryAgain();
-        }, 1000);
+        }, 200);
     }, [tryAgain]);
 
     return { data, error, loading };
 };
 
-export default fetchData;
+export default FetchData;

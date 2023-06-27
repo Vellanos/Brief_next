@@ -1,6 +1,8 @@
 'use client'
 import React from 'react';
 import UserRecentlyPlayed from './components/UserRecentlyPlayed';
+import { HomeContext } from './components/HomeContext';
+import Layout from './Layout';
 import TopArtists from './components/TopArtists';
 
 import "primeflex/primeflex.css"
@@ -15,13 +17,29 @@ import "primereact/resources/primereact.min.css";
 
 function App() {
   return (
-    <>
-      <div className='flex flex-column gap-2'>
-        <UserRecentlyPlayed titre_container="Les dernières écoutes" />
-        <TopArtists titre_container="test" />
-      </div>
+    <Layout >
+      <HomeContext.Consumer>
+        {({ isLoggedIn }) => (
+          <>
+            {isLoggedIn ? (
+              <div className='flex flex-column gap-2'>
+                <UserRecentlyPlayed titre_container="Les dernières écoutes" />
+                <TopArtists />
+              </div>
+            ) : (
+              <>
+                <div className='flex flex-column gap-2'>
+                  <p> T'es pas co frérot</p>
+                </div>
+              </>
+            )}
+          </>
+        )}
+      </HomeContext.Consumer>
 
-    </>
+    </Layout>
+
+
   );
 }
 

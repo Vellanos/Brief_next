@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Card } from 'primereact/card';
+import { ProgressSpinner } from 'primereact/progressspinner';
 import "../style/CardContainer.css"
+import CardElement from './CardElement';
 
 export default function UserRecentlyPlayed({ titre_container }) {
     const [tracks, setTracks] = useState([]);
@@ -8,7 +9,7 @@ export default function UserRecentlyPlayed({ titre_container }) {
 
     useEffect(() => {
         fetch('/api/recently-played')
-            .then(response => response.json()) // Convert the response to JSON here
+            .then(response => response.json())
             .then(data => {
                 setTracks(data);
                 setLoading(false);
@@ -19,10 +20,14 @@ export default function UserRecentlyPlayed({ titre_container }) {
     }, []);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return (
+            <div className='flex align-items-center justify-content-center min-h-screen bg-black-alpha-90'>
+                <ProgressSpinner className='' animationDuration="1s" />
+            </div>
+        );
     }
 
-    const recentlyPlayedTracks = tracks.data.items.map(item => ({
+    const recentlyPlayedTracks = tracks.data.items?.map(item => ({
         name: item?.track?.name,
         id: item?.track?.id,
         album: {
@@ -33,25 +38,20 @@ export default function UserRecentlyPlayed({ titre_container }) {
         },
     }))
 
-    const header = (img) => (
-        <img alt="Card" src={img} />
-    );
-
     return (
         <div className='card-container pb-5 pl-3 pr-3 pt-2 ml-1 mr-1'>
             <div className='flex flex-row justify-content-between mt-3 mb-3'>
                 <h2> {titre_container} </h2>
                 <a href="">Tout afficher</a>
             </div>
-            <div className="flex">
-                {recentlyPlayedTracks.slice(0, 6).map((album) =>
-                    <Card
+            <div className="flex align-item-center justify-content-center">
+                {recentlyPlayedTracks?.slice(0, 6).map((album) =>
+                    <CardElement
                         key={album.id}
                         title={album.name}
                         subTitle={album.album.artist}
-                        header={header(album.album.image)}
-                        className="md:w-25rem m-3 bg-black-alpha-30 hover:bg-black-alpha-10 text-white text-sm customTitle p-3 cursor-pointer">
-                    </Card>
+                        img={album.album.image}
+                    />
                 )}
             </div>
         </div>

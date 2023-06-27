@@ -45,9 +45,9 @@ export const authOptions = {
             session.error = token.error
             return session
         },
+
     },
 }
 
 const handler = NextAuth(authOptions)
-
 export { handler as GET, handler as POST }

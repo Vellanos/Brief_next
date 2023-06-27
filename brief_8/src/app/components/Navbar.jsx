@@ -4,6 +4,7 @@ import { Menubar } from 'primereact/menubar';
 import { Button } from 'primereact/button';
 import { classNames } from 'primereact/utils';
 import { SignIn, signIn, signOut } from "next-auth/react"
+import { HomeContext } from './HomeContext';
 
 const NavBar = () => {
     const [isMobile, setIsMobile] = React.useState(false);
@@ -29,18 +30,30 @@ const NavBar = () => {
 
     const renderEndButtons = () => {
         return (
-            <div className="flex align-items-center">
-                <Button
-                    icon="pi pi-search"
-                    className="mr-2 p-button-rounded p-button-secondary"
-                />
-                <Button
-                    onClick={() => signIn("spotify")}
-                    label="Login"
-                    icon="pi pi-user"
-                    className="mr-2 p-button-rounded p-button-secondary"
-                />
-            </div>
+
+            <HomeContext.Consumer>
+                {({ isLoggedIn }) => (
+                    <>
+                        {isLoggedIn ? (
+                            <Button
+                                onClick={() => signOut("spotify")}
+                                label="Se déconnecter"
+                                rounded
+                                className="text-center text-sm font-bold bg-white-alpha-90 border-transparent text-900 hover:text-900"
+                            />
+                        ) : (
+                            <>
+                                <Button
+                                    onClick={() => signIn("spotify")}
+                                    label="Se connecter"
+                                    rounded
+                                    className="text-center text-sm font-bold bg-white-alpha-90 border-transparent text-900 hover:text-900"
+                                />
+                            </>
+                        )}
+                    </>
+                )}
+            </HomeContext.Consumer>
         );
     };
 
