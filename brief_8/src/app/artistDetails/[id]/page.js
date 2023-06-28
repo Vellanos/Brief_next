@@ -4,7 +4,7 @@ import { ProgressSpinner } from "primereact/progressspinner";
 import Layout from "../../Layout";
 import '../../globals.css';
 import { HomeContext } from "@/app/components/HomeContext";
-import ContainerPlaylist from "@/app/components/ContainerPlaylist";
+import ContainerArtist from "@/app/components/ContainerArtist";
 
 
 import "primeflex/primeflex.css"
@@ -16,8 +16,8 @@ import "primereact/resources/themes/arya-orange/theme.css";
 //core
 import "primereact/resources/primereact.min.css";
 
-export default function PlaylistDetails({ params }) {
-    const { data, error, loading } = FetchData(`https://api.spotify.com/v1/playlists/${params.id}`);
+export default function ArtistDetails({ params }) {
+    const { data, error, loading } = FetchData(`https://api.spotify.com/v1/artists/${params.id}`);
 
     if (loading) {
         return (
@@ -33,9 +33,10 @@ export default function PlaylistDetails({ params }) {
         </div>;
     }
 
-    const playlists = data.tracks.items
+    const image = data.images[0].url
+    const note = data.popularity
     const titre = data.name
-    console.log(data);
+    const followers = data.followers.total + " followers"
 
     return (
         <Layout >
@@ -43,17 +44,16 @@ export default function PlaylistDetails({ params }) {
                 {({ isLoggedIn }) => (
                     <>
                         {isLoggedIn ? (
-                            <ContainerPlaylist
-                                titre_container={titre}
-                                data={playlists}
+                            <ContainerArtist
+                                img={image}
+                                note={note}
+                                titre={titre}
+                                followers={followers}
                             />
 
                         ) : (
                             <>
-                                <ContainerPlaylist
-                                    titre_container={titre}
-                                    data={playlists}
-                                />
+                                <ContainerArtist />
                             </>
                         )}
                     </>

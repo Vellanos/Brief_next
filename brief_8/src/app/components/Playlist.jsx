@@ -32,6 +32,7 @@ export default function Playlist({ isLoading }) {
                     subtitlecard={subtitle}
                     add=""
                     data={playlist}
+                    type_link="playlist"
                 />
             </div>
         </HomeContextProvider>

@@ -4,7 +4,7 @@ import { ProgressSpinner } from "primereact/progressspinner";
 import Layout from "../../Layout";
 import '../../globals.css';
 import { HomeContext } from "@/app/components/HomeContext";
-import ContainerPlaylist from "@/app/components/ContainerPlaylist";
+import ContainerAlbum from "@/app/components/ContainerAlbum";
 
 
 import "primeflex/primeflex.css"
@@ -16,8 +16,8 @@ import "primereact/resources/themes/arya-orange/theme.css";
 //core
 import "primereact/resources/primereact.min.css";
 
-export default function PlaylistDetails({ params }) {
-    const { data, error, loading } = FetchData(`https://api.spotify.com/v1/playlists/${params.id}`);
+export default function SongDetails({ params }) {
+    const { data, error, loading } = FetchData(`https://api.spotify.com/v1/albums/${params.id}`);
 
     if (loading) {
         return (
@@ -33,9 +33,10 @@ export default function PlaylistDetails({ params }) {
         </div>;
     }
 
-    const playlists = data.tracks.items
+    const images = data.images[0].url
+    const albums = data.tracks.items
     const titre = data.name
-    console.log(data);
+
 
     return (
         <Layout >
@@ -43,16 +44,18 @@ export default function PlaylistDetails({ params }) {
                 {({ isLoggedIn }) => (
                     <>
                         {isLoggedIn ? (
-                            <ContainerPlaylist
+                            <ContainerAlbum
                                 titre_container={titre}
-                                data={playlists}
+                                data={albums}
+                                img={images}
                             />
 
                         ) : (
                             <>
-                                <ContainerPlaylist
+                                <ContainerAlbum
                                     titre_container={titre}
-                                    data={playlists}
+                                    data={albums}
+                                    img={images}
                                 />
                             </>
                         )}

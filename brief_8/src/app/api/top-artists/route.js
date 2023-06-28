@@ -5,7 +5,7 @@ import { authOptions } from '../auth/[...nextauth]/route'
 
 export async function GET() {
     const { accessToken } = await getServerSession(authOptions)
-    const res = await fetch('https://api.spotify.com/v1/me/top/artists?limit=5', {
+    const res = await fetch('https://api.spotify.com/v1/me/top/artists', {
         headers: {
             'Content-Type': 'application/json',
             'API-Key': process.env.DATA_API_KEY,

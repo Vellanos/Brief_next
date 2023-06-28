@@ -5,26 +5,19 @@ import { Button } from 'primereact/button';
 import { classNames } from 'primereact/utils';
 import { SignIn, signIn, signOut } from "next-auth/react"
 import { HomeContext } from './HomeContext';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const NavBar = () => {
     const [isMobile, setIsMobile] = React.useState(false);
 
     const items = [
         {
-            label: 'Accueil',
-            icon: "pi pi-fw pi-check",
-        },
-        {
-            label: 'Produits',
-            icon: 'pi pi-fw pi-tags',
-        },
-        {
-            label: 'Services',
-            icon: 'pi pi-fw pi-cog',
-        },
-        {
-            label: 'Contact',
-            icon: 'pi pi-fw pi-envelope',
+            icon: (
+                <Link href="http://localhost:3000/">
+                    <Image src="https://upload.wikimedia.org/wikipedia/commons/8/84/Spotify_icon.svg" alt="Spotify Logo" width={36} height={36} />
+                </Link>
+            ),
         },
     ];
 

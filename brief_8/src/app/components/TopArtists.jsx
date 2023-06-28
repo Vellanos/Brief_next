@@ -35,6 +35,7 @@ export default function TopArtists() {
                 subtitlecard={subtitle}
                 add="/100"
                 data={TopArtists}
+                type_link="artist"
             />
         </div>
     );

@@ -41,10 +41,7 @@ function App() {
           </>
         )}
       </HomeContext.Consumer>
-
     </Layout>
-
-
   );
 }
 

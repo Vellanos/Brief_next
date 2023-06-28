@@ -22,6 +22,7 @@ export default function NewReleases({ isLoading }) {
         </div>;
     }
 
+    console.log(data);
     const albums = data.albums.items
     const subtitle = "release_date"
 
@@ -33,6 +34,7 @@ export default function NewReleases({ isLoading }) {
                     subtitlecard={subtitle}
                     add=""
                     data={albums}
+                    type_link="album"
                 />
             </div>
         </HomeContextProvider>
