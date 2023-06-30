@@ -1,7 +1,9 @@
 import CardElement from "./CardElement"
+
 import "../style/CardContainer.css"
 
-export default function ContainerCard({ titre_container, data, add, subtitlecard, type_link }) {
+export default function ContainerSearch({ data, type_link, titre_container }) {
+
     let link = ""
     if (type_link == "playlist") {
         link = "http://localhost:3000/playlistDetails/"
@@ -12,17 +14,18 @@ export default function ContainerCard({ titre_container, data, add, subtitlecard
     } else if (type_link == "album") {
         link = "http://localhost:3000/albumDetails/"
     }
+
     return (
-        <div className='card-container pb-5 pl-3 pr-3 pt-2 overflow-auto'>
-            <div className='flex flex-row justify-content-between mt-3 mb-3'>
-                <h2>{titre_container}</h2>
+        <div className='card-container pb-5 pl-3 pr-3 pt-2'>
+            <div className='flex mt-3 mb-3'>
+                <h2> {titre_container} </h2>
             </div>
-            <div className="flex align-item-center">
+            <div className="flex flex-wrap align-item-center justify-content-center">
                 {data?.map((item, index) =>
                     <CardElement
                         key={index}
                         title={item.name}
-                        subTitle={item[subtitlecard] + add}
+                        subTitle={item.followers.total + " followers"}
                         img={item.images[0]?.url}
                         lien={link + item.id}
                     />

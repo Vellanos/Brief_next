@@ -6,7 +6,7 @@ import ContainerCard from './ContainerCard';
 
 export default function Playlist({ isLoading }) {
 
-    const { data, error, loading } = FetchData('https://api.spotify.com/v1/browse/featured-playlists?country=FR&offset=0&limit=5');
+    const { data, error, loading } = FetchData('https://api.spotify.com/v1/browse/featured-playlists?country=FR&offset=0&limit=10');
 
     if (loading) {
         return (

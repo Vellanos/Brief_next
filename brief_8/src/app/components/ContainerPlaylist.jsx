@@ -11,6 +11,7 @@ export default function ContainerPlaylist({ titre_container, data }) {
             <div className="flex flex-column justify-content-between gap-2">
                 {data?.map((item, index) =>
                     <SongInPlaylist
+                        key={index}
                         compteur={index + 1}
                         titresong={item.track.name}
                         img={item.track.album.images[0].url}

@@ -6,7 +6,7 @@ import ContainerCard from './ContainerCard';
 
 export default function NewReleases({ isLoading }) {
 
-    const { data, error, loading } = FetchData('https://api.spotify.com/v1/browse/new-releases?country=FR&limit=5');
+    const { data, error, loading } = FetchData('https://api.spotify.com/v1/browse/new-releases?country=FR&limit=10');
 
     if (loading) {
         return (
@@ -22,7 +22,6 @@ export default function NewReleases({ isLoading }) {
         </div>;
     }
 
-    console.log(data);
     const albums = data.albums.items
     const subtitle = "release_date"
 

@@ -35,7 +35,6 @@ export default function PlaylistDetails({ params }) {
 
     const playlists = data.tracks.items
     const titre = data.name
-    console.log(data);
 
     return (
         <Layout >

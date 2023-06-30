@@ -8,6 +8,7 @@ export const HomeContextProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
+
     useEffect(() => {
         (async function checkSession() {
             const session = await checkLoginStatus();

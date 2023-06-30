@@ -13,9 +13,33 @@ const NavBar = () => {
 
     const items = [
         {
-            icon: (
+            label: (
                 <Link href="http://localhost:3000/">
                     <Image src="https://upload.wikimedia.org/wikipedia/commons/8/84/Spotify_icon.svg" alt="Spotify Logo" width={36} height={36} />
+                </Link>
+            ),
+        },
+        {
+            label: (
+                <Link href="http://localhost:3000/favories" className='flex gap-2'>
+                    Favories
+                    <span className="pi pi-fw pi-heart-fill"></span>
+                </Link>
+            ),
+        },
+        {
+            label: (
+                <Link href="http://localhost:3000/myplaylist" className='flex gap-2'>
+                    Mes Playlists
+                    <span className="pi pi-fw pi-bookmark-fill"></span>
+                </Link>
+            ),
+        },
+        {
+            label: (
+                <Link href="http://localhost:3000/search" className='flex gap-2'>
+                    Rechercher
+                    <span className="pi pi-fw pi-search"></span>
                 </Link>
             ),
         },

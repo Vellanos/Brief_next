@@ -13,6 +13,6 @@ a {
   color: rgb(155, 152, 152);
 }
 
-.titre-card {
-  font-size: 20px;
+.p-card-title {
+  font-size: 20px !important;
 }

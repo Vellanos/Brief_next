@@ -53,7 +53,12 @@ export default function ArtistDetails({ params }) {
 
                         ) : (
                             <>
-                                <ContainerArtist />
+                                <ContainerArtist
+                                    img={image}
+                                    note={note}
+                                    titre={titre}
+                                    followers={followers}
+                                />
                             </>
                         )}
                     </>

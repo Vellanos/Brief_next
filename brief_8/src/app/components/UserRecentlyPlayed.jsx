@@ -41,11 +41,11 @@ export default function UserRecentlyPlayed({ titre_container }) {
         <div className='card-container pb-5 pl-3 pr-3 pt-2 ml-1 mr-1'>
             <div className='flex flex-row justify-content-between mt-3 mb-3'>
                 <h2> {titre_container} </h2>
-                <a href="">Tout afficher</a>
             </div>
             <div className="flex align-item-center justify-content-center">
-                {recentlyPlayedTracks?.slice(0, 6).map((album) =>
+                {recentlyPlayedTracks?.slice(0, 6).map((album, index) =>
                     <CardElement
+                        key={index}
                         title={album.name}
                         subTitle={album.album.artist}
                         img={album.album.image}
