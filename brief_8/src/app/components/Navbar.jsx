@@ -54,17 +54,17 @@ const NavBar = () => {
                         {isLoggedIn ? (
                             <Button
                                 onClick={() => signOut("spotify")}
-                                label="Se déconnecter"
+                                label="Se Déconnecter"
                                 rounded
-                                className="text-center text-sm font-bold bg-white-alpha-90 border-transparent text-900 hover:text-900"
+                                className="text-center text-sm font-bold bg-green-500 border-transparent text-900 hover:text-900"
                             />
                         ) : (
                             <>
                                 <Button
                                     onClick={() => signIn("spotify")}
-                                    label="Se connecter"
+                                    label="Se Connecter"
                                     rounded
-                                    className="text-center text-sm font-bold bg-white-alpha-90 border-transparent text-900 hover:text-900"
+                                    className="text-center text-sm font-bold bg-green-500 border-transparent text-900 hover:text-900"
                                 />
                             </>
                         )}
